@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Coffee Date ☕</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#f7efe5;color:#604735;
+ font-family:Georgia,serif;text-align:center;
+}
+main{max-width:650px;margin:auto;padding:28px 18px 55px}
+h1{font-size:clamp(2.2rem,8vw,3.4rem);margin:12px 0}
+h2{font-size:1.5rem}
+p{line-height:1.85}
+.subtitle{color:#99765c;font-size:.95rem}
+.card{
+ background:#fffaf3;border:1px solid #ead8c4;
+ border-radius:25px;padding:23px 18px;margin:20px 0;
+ box-shadow:0 8px 24px #7e593010;
+}
+button{
+ border:1px solid #e4cbb2;border-radius:22px;
+ padding:12px 16px;margin:5px;
+ background:#eee0cf;color:#604735;
+ font:inherit;cursor:pointer;transition:.2s;
+}
+button:hover{background:#e4c9aa;transform:translateY(-2px)}
+.primary{background:#876348;color:white;border-color:#876348}
+.primary:hover{background:#704e37}
+.cup{font-size:2.5rem;background:#f8ead9;border:0}
+#note,#flowerNote,#hugNote,#letterText,#finalNote{white-space:pre-line}
+#note{min-height:55px}
+.hidden{display:none}
+.doodle{font-size:2.3rem;letter-spacing:7px}
+.small{font-size:.85rem;color:#9b7a60}
+footer{margin-top:28px;color:#9b7a60;font-size:.9rem}
+</style>
+</head>
+<body>
+<main>
+ <div class="doodle">☕ 🐾 🤎</div>
+ <p class="subtitle">a tiny corner of the world, made just for you</p>
+ <h1>A Little Coffee<br>Date With You</h1>
+ <p>Hi, my love. ☕</p>
+ <p>If I could be anywhere right now, I'd choose a little café with you. We'd get our favorite drinks, talk about everything and nothing, and let the world slow down for a while.</p>
+ <p>Since I can't be there beside you just yet, I made you this little place. Take your time here. There's no rush. 🤎</p>
+
+ <section class="card">
+  <h2>☕ Pick your little coffee</h2>
+  <p>Choose a cup and see what today's little note says.</p>
+  <button class="cup" onclick="coffee(0)">☕</button>
+  <button class="cup" onclick="coffee(1)">🥛</button>
+  <button class="cup" onclick="coffee(2)">🍵</button>
+  <p id="note">Your coffee comes with a little reminder. 🤎</p>
+ </section>
+
+ <section class="card">
+  <h2>💌 Little notes from me</h2>
+  <p>Pick whichever note your heart needs today.</p>
+  <button onclick="letter(0)">When you're sad</button>
+  <button onclick="letter(1)">When you miss me</button>
+  <button onclick="letter(2)">When you're overthinking</button>
+  <div id="letterBox" class="hidden">
+   <p id="letterText"></p>
+   <button onclick="document.getElementById('letterBox').classList.add('hidden')">Fold the letter 🤎</button>
+  </div>
+ </section>
+
+ <section class="card">
+  <h2>🌷 A tiny flower for you</h2>
+  <p>Tap the flower for a little reminder.</p>
+  <button class="cup" onclick="flower()">🌷</button>
+  <p id="flowerNote">A little flower, just for you.</p>
+ </section>
+
+ <section class="card">
+  <h2>🫂 A hug from far away</h2>
+  <p>For when I wish I could be there to hold your hand.</p>
+  <button class="primary" onclick="hug()">Send me a virtual hug</button>
+  <p id="hugNote"></p>
+ </section>
+
+ <section class="card">
+  <h2>🎁 One last little surprise</h2>
+  <p>There's something I want you to remember.</p>
+  <button class="primary" onclick="surprise()">Open my heart 🤎</button>
+  <p id="finalNote"></p>
+ </section>
+
+ <footer>
+  Made with love, a little coffee, and lots of you. 🤎<br>
+  <p>Whenever you need a quiet place, you can come back here.</p>
+ </footer>
+</main>
+
+<script>
+const coffeeNotes=[
+ "☕ A warm little reminder: you don't have to solve everything today. One breath, one moment at a time.",
+ "🥛 A soft reminder that you deserve kindness, especially from yourself. You don't have to earn rest.",
+ "🍵 Today's little wish: may you find a moment of peace, even if the day feels a little messy."
+];
+const letters=[
+ "Hi, love. If today feels heavy, you don't have to pretend otherwise. You don't need to explain every feeling perfectly. Take a breath, rest if you need to, and be gentle with yourself. I'm sending you the warmest hug. 🤎",
+ "I wish we could share a real coffee right now. I'd sit beside you, hold your hand, and listen to whatever you wanted to share. Until then, here's a little reminder that you're loved across every mile between us. ☕",
+ "Love, having emotions doesn't make you difficult. You don't need to apologize for every feeling or make yourself smaller to deserve care. You can take your time. You don't have to figure everything out right now. 🤍"
+];
+let flowerCount=0;
+const flowerNotes=[
+ "🌷 You deserve patience and room to grow at your own pace.",
+ "🌼 You don't have to be cheerful every day to be loved.",
+ "🌸 Your feelings are allowed to exist. You don't have to apologize for them.",
+ "🌻 I hope you speak to yourself as kindly as you speak to the people you love."
+];
+function coffee(i){document.getElementById("note").textContent=coffeeNotes[i]}
+function letter(i){
+ document.getElementById("letterBox").classList.remove("hidden");
+ document.getElementById("letterText").textContent=letters[i];
+}
+function flower(){
+ document.getElementById("flowerNote").textContent=flowerNotes[flowerCount%flowerNotes.length];
+ flowerCount++;
+}
+function hug(){
+ document.getElementById("hugNote").textContent="🫂 Hug delivered! Imagine me wrapping you in the coziest blanket and staying beside you for a while. No need to say anything. 🤎";
+}
+function surprise(){
+ document.getElementById("finalNote").textContent="My love, you don't have to be a perfect version of yourself for me. Your silly side, your quiet side, your happy days, and your difficult days are all parts of you. I hope you always have room to be yourself. If I could, I'd bring you coffee, sit beside you, and remind you how much you matter. Until our next coffee date, here's all my love. ☕🤎";
+}
+</script>
+</body>
+</html>
